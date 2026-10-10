@@ -5,7 +5,7 @@ import { TechnologyBadge } from "./TechnologyBadge";
 
 export function ProjectCard({ project }: { project: ProjectItem }) {
   return (
-    <div className="group overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+    <div className="reveal group overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
       <div className="relative aspect-video w-full overflow-hidden bg-surface-2">
         <Image
           src={project.image}

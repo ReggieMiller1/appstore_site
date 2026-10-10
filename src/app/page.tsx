@@ -36,7 +36,7 @@ export default async function Home() {
               <AppCard key={app.slug} app={app} />
             ))}
           </div>
-          <div className="mt-10 text-center">
+          <div className="reveal mt-10 text-center">
             <Link
               href="/apps"
               className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
@@ -51,7 +51,7 @@ export default async function Home() {
       {/* About Me */}
       <section className="border-y border-border bg-surface">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 lg:grid-cols-2 lg:items-center">
-          <div>
+          <div className="reveal">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface-2 px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-accent">
               <Sparkles className="h-3.5 w-3.5" />
               About Me
@@ -82,7 +82,7 @@ export default async function Home() {
             </Link>
           </div>
 
-          <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl border border-border bg-surface-2">
+          <div className="reveal relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl border border-border bg-surface-2">
             <Image
               src="/icons/profile-placeholder.svg"
               alt="[PROFILE PHOTO]"
@@ -106,7 +106,7 @@ export default async function Home() {
             {featuredSkills.map((skill) => (
               <span
                 key={skill}
-                className="rounded-2xl border border-border bg-surface px-5 py-3 text-sm font-medium shadow-sm transition-all hover:-translate-y-1 hover:border-accent hover:shadow-md"
+                className="reveal rounded-2xl border border-border bg-surface px-5 py-3 text-sm font-medium shadow-sm transition-all hover:-translate-y-1 hover:border-accent hover:shadow-md"
               >
                 {skill}
               </span>
@@ -129,7 +129,7 @@ export default async function Home() {
                 <ProjectCard key={project.slug} project={project} />
               ))}
             </div>
-            <div className="mt-10 text-center">
+            <div className="reveal mt-10 text-center">
               <Link
                 href="/projects"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
@@ -144,16 +144,16 @@ export default async function Home() {
 
       {/* CTA */}
       <section className="mx-auto max-w-4xl px-5 py-24 text-center">
-        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h2 className="reveal text-3xl font-semibold tracking-tight sm:text-4xl">
           Have an idea? Let&apos;s build it.
         </h2>
-        <p className="mt-4 text-muted">
+        <p className="reveal mt-4 text-muted">
           Whether it&apos;s a mobile app, a web platform, or a backend system —
           I&apos;d love to hear about it.
         </p>
         <Link
           href="/contact"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
+          className="reveal mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
         >
           Contact Me
           <ArrowRight className="h-4 w-4" />

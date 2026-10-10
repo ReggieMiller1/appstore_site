@@ -1,41 +1,33 @@
 import type { NextConfig } from "next";
-const isDev = process.env.NODE_ENV === "development";
+
+// Uploaded icons/screenshots/project images are served by the CMS backend,
+// so the image config is derived from the same API_URL the data layer uses
+// (src/lib/api.ts) rather than hardcoding a host in two places.
+const apiUrl = new URL(
+  process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"
+);
+
+// Next.js's image optimizer has SSRF protection: it refuses to fetch an
+// upstream image whose host resolves to a private/loopback address, and
+// reports that as a 400 '"url" parameter is not allowed' — even when the
+// host is listed in remotePatterns. That's exactly the situation in local
+// development (backend on localhost:4000), so every icon/screenshot 400'd.
+// Only relax that check when the backend really is local; with a real
+// deployed domain it stays off.
+const backendIsLocal = ["localhost", "127.0.0.1", "[::1]", "::1"].includes(apiUrl.hostname);
 
 const nextConfig: NextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
-
-    // Only allow private-IP images in development.
-    dangerouslyAllowLocalIP: isDev,
-
+    dangerouslyAllowLocalIP: backendIsLocal,
     remotePatterns: [
-      // The CMS backend, in development.
-      ...(isDev
-        ? [
-            {
-              protocol: "http" as const,
-              hostname: "localhost",
-              port: "4000",
-              pathname: "/uploads/**",
-            },
-            // Optional: also allow the loopback literal, in case something
-            // builds URLs with 127.0.0.1 instead of localhost.
-            {
-              protocol: "http" as const,
-              hostname: "127.0.0.1",
-              port: "4000",
-              pathname: "/uploads/**",
-            },
-          ]
-        : []),
-
-      // Production backend
-      // {
-      //   protocol: "https",
-      //   hostname: "api.yourdomain.com",
-      //   pathname: "/uploads/**",
-      // },
+      {
+        protocol: apiUrl.protocol.replace(":", "") as "http" | "https",
+        hostname: apiUrl.hostname,
+        ...(apiUrl.port ? { port: apiUrl.port } : {}),
+        pathname: "/uploads/**",
+      },
     ],
   },
 };

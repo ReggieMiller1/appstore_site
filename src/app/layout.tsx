@@ -61,7 +61,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   }
 
   return (
-    <html data-scroll-behavior="smooth" lang="en" className="h-full antialiased" suppressHydrationWarning>
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <body className="flex min-h-full flex-col font-sans">
         <ThemeProvider>
           <ScrollRevealInit />

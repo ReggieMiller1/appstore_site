@@ -6,7 +6,7 @@ import { TechnologyBadge } from "./TechnologyBadge";
 
 export function AppCard({ app }: { app: AppItem }) {
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+    <div className="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border bg-surface-2">
           <Image src={app.icon} alt={`${app.name} icon`} width={48} height={48} />

@@ -16,15 +16,15 @@ export function Hero({ apps, siteConfig }: { apps: AppItem[]; siteConfig: SiteCo
 
       <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2">
         <div>
-          <span className="mb-6 inline-block rounded-full border border-border bg-surface-2 px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-accent">
+          <span className="reveal mb-6 inline-block rounded-full border border-border bg-surface-2 px-4 py-1.5 text-xs font-medium uppercase tracking-wide text-accent">
             {siteConfig.role}
           </span>
-          <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="reveal text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
             {siteConfig.tagline}
           </h1>
-          <p className="mt-6 max-w-lg text-lg text-muted">{siteConfig.description}</p>
+          <p className="reveal mt-6 max-w-lg text-lg text-muted">{siteConfig.description}</p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="reveal mt-9 flex flex-wrap gap-3">
             <Link
               href="/apps"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
@@ -47,7 +47,7 @@ export function Hero({ apps, siteConfig }: { apps: AppItem[]; siteConfig: SiteCo
           </div>
         </div>
 
-        <div className="relative hidden h-[420px] lg:block">
+        <div className="reveal relative hidden h-[420px] lg:block">
           {featured.map((app, i) => (
             <div
               key={app.slug}

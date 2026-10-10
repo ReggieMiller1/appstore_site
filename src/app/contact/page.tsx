@@ -26,11 +26,11 @@ export default async function ContactPage() {
       />
 
       <div className="grid gap-12 lg:grid-cols-[1fr_320px]">
-        <div className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
+        <div className="reveal rounded-3xl border border-border bg-surface p-6 sm:p-8">
           <ContactForm />
         </div>
 
-        <div className="space-y-4">
+        <div className="reveal space-y-4">
           <a
             href={`mailto:${siteConfig.email}`}
             className="flex items-center gap-3 rounded-2xl border border-border bg-surface p-4 transition-colors hover:border-accent"

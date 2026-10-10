@@ -25,7 +25,7 @@ export default async function AboutPage() {
         description={siteConfig.role}
       />
 
-      <div className="space-y-4 text-muted">
+      <div className="reveal space-y-4 text-muted">
         <p>
           {siteConfig.about_intro ||
             "I'm a developer who enjoys building complete, working products — not just prototypes."}
@@ -35,10 +35,10 @@ export default async function AboutPage() {
       {/* Journey */}
       {timeline.length > 0 && (
         <section className="mt-16">
-          <h2 className="mb-8 text-2xl font-semibold">My Journey</h2>
+          <h2 className="reveal mb-8 text-2xl font-semibold">My Journey</h2>
           <ol className="relative space-y-10 border-l border-border pl-8">
             {timeline.map((entry) => (
-              <li key={entry.title} className="relative">
+              <li key={entry.title} className="reveal relative">
                 <span className="absolute -left-[2.15rem] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent ring-4 ring-background" />
                 {entry.year && (
                   <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-accent">
@@ -56,12 +56,12 @@ export default async function AboutPage() {
       {/* Skills */}
       {skillCategories.length > 0 && (
         <section className="mt-16">
-          <h2 className="mb-8 text-2xl font-semibold">Skills</h2>
+          <h2 className="reveal mb-8 text-2xl font-semibold">Skills</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {skillCategories.map((cat) => (
               <div
                 key={cat.category}
-                className="rounded-2xl border border-border bg-surface p-5"
+                className="reveal rounded-2xl border border-border bg-surface p-5"
               >
                 <h3 className="mb-3 font-semibold">{cat.category}</h3>
                 <div className="flex flex-wrap gap-2">
@@ -78,12 +78,12 @@ export default async function AboutPage() {
       {/* What I Build */}
       {whatIBuild.length > 0 && (
         <section className="mt-16">
-          <h2 className="mb-8 text-2xl font-semibold">What I Build</h2>
+          <h2 className="reveal mb-8 text-2xl font-semibold">What I Build</h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {whatIBuild.map((item) => (
               <div
                 key={item}
-                className="rounded-xl border border-border bg-surface px-4 py-3 text-sm font-medium transition-colors hover:border-accent"
+                className="reveal rounded-xl border border-border bg-surface px-4 py-3 text-sm font-medium transition-colors hover:border-accent"
               >
                 {item}
               </div>
