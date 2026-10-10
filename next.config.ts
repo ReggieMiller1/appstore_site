@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 // so the image config is derived from the same API_URL the data layer uses
 // (src/lib/api.ts) rather than hardcoding a host in two places.
 const apiUrl = new URL(
-  process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"
+"https://appstore-siov.onrender.com"
 );
 
 // Next.js's image optimizer has SSRF protection: it refuses to fetch an
