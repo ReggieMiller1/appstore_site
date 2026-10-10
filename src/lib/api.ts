@@ -1,6 +1,6 @@
 import { AppItem, ProjectItem, SkillCategory, TimelineEntry, DownloadLink } from "@/types";
 
-const API_BASE = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const API_BASE = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "https://appstore-siov.onrender.com";
 
 /**
  * Backend-stored paths (icons, screenshots, project images) are relative,
