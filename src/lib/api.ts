@@ -1,7 +1,7 @@
 import { AppItem, ProjectItem, SkillCategory, TimelineEntry, DownloadLink } from "@/types";
 
-const API_BASE = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "https://smirfdev.free.nf/appstore/index.php";
-const IMAGE_BASE_URL = process.env.IMAGE_BASE_URL || "https://smirfdev.free.nf/appstore/index.php";
+const API_BASE = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "https://appstore-siov.onrender.com";
+const IMAGE_BASE_URL = process.env.IMAGE_BASE_URL || "https://qenikxdyxzvoegqriluu.supabase.co";
 /**
  * Backend-stored paths (icons, screenshots, project images) are relative,
  * e.g. "/uploads/icons/foo.svg". Turn those into absolute URLs pointing at
