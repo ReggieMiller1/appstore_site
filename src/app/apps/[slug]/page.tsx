@@ -45,7 +45,7 @@ export default async function AppDetailsPage({
   const related = allApps.filter((a) => a.slug !== app.slug).slice(0, 3);
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-14 reveal">
+    <div className="mx-auto max-w-5xl px-5 py-14">
       <Link
         href="/apps"
         className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent"
