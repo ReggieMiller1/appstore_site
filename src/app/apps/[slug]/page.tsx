@@ -114,10 +114,12 @@ export default async function AppDetailsPage({
         <div className="lg:col-span-2">
           <h2 className="mb-4 text-xl font-semibold">About {app.name}</h2>
           <div className="space-y-4 text-muted">
-            {app.longDescription.split("\n\n").map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </div>
+  {app.longDescription.split(/\n\s*\n/).map((para, i) => (
+    <p key={i} className="whitespace-pre-line">
+      {para}
+    </p>
+  ))}
+</div>
         </div>
 
         <div>
