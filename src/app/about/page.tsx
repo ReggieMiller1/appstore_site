@@ -25,12 +25,12 @@ export default async function AboutPage() {
         description={siteConfig.role}
       />
 
-      <div className="reveal space-y-4 text-muted">
-        <p>
-          {siteConfig.about_intro ||
-            "I'm a developer who enjoys building complete, working products — not just prototypes."}
-        </p>
-      </div>
+     <div className="reveal space-y-4 text-muted">
+  <p className="whitespace-pre-line">
+    {siteConfig.about_intro ||
+      "I'm a developer who enjoys building complete, working products — not just prototypes."}
+  </p>
+</div>
 
       {/* Journey */}
       {timeline.length > 0 && (

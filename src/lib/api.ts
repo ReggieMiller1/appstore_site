@@ -1,16 +1,17 @@
 import { AppItem, ProjectItem, SkillCategory, TimelineEntry, DownloadLink } from "@/types";
 
-const API_BASE = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "https://appstore-siov.onrender.com";
-
+const API_BASE = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || "https://smirfdev.free.nf/appstore/index.php";
+const IMAGE_BASE_URL = process.env.IMAGE_BASE_URL || "https://smirfdev.free.nf/appstore/index.php";
 /**
  * Backend-stored paths (icons, screenshots, project images) are relative,
  * e.g. "/uploads/icons/foo.svg". Turn those into absolute URLs pointing at
  * the CMS backend; leave already-absolute URLs (http/https) untouched.
  */
+
 export function mediaUrl(path: string | null | undefined): string {
   if (!path) return "/icons/profile-placeholder.svg";
   if (/^https?:\/\//.test(path)) return path;
-  return `${API_BASE}${path}`;
+  return `${IMAGE_BASE_URL}${path}`;
 }
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
@@ -19,6 +20,7 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
     cache: "no-store",
     headers: { "Content-Type": "application/json", ...(init?.headers || {}) },
   });
+
   if (!res.ok) {
     if (res.status === 404) {
       throw Object.assign(new Error("Not found"), { status: 404 });
@@ -38,6 +40,7 @@ interface ApiAppFeature {
 }
 interface ApiAppDownload {
   id: number;
+  path: string;
   platform: string;
   version: string;
   filename: string | null;
@@ -46,6 +49,7 @@ interface ApiAppDownload {
   release_date: string | null;
   download_count: number;
   url: string | null;
+  architecture: string | null;
 }
 interface ApiApp {
   id: number;
@@ -72,9 +76,12 @@ interface ApiApp {
 
 function mapDownload(d: ApiAppDownload): DownloadLink {
   return {
+    id: d.id,
     platform: d.platform as DownloadLink["platform"],
     label: `Download for ${d.platform}`,
-    url: mediaUrl(d.url),
+    url: mediaUrl('/storage/v1/object/public/'+d.path) || d.external_url || "",
+    architecture: d.architecture || undefined,
+    size: d.size_bytes || 0 ,
   };
 }
 
@@ -116,6 +123,7 @@ export async function getFeaturedApps(): Promise<AppItem[]> {
 export async function getApp(slug: string): Promise<AppItem | null> {
   try {
     const data = await apiFetch<{ app: ApiApp }>(`/api/apps/${slug}`);
+   // console.log("Fetched app:", data.app);
     return mapApp(data.app);
   } catch (err) {
     if ((err as { status?: number }).status === 404) return null;
@@ -156,6 +164,7 @@ function mapProject(p: ApiProject): ProjectItem {
 
 export async function getProjects(): Promise<ProjectItem[]> {
   const data = await apiFetch<{ projects: ApiProject[] }>("/api/projects");
+//  console.log("Fetched projects:", data.projects);
   return data.projects.map(mapProject);
 }
 
@@ -193,6 +202,7 @@ export async function getProfileBundle(): Promise<ProfileBundle> {
 
 export async function getSiteConfig(): Promise<SiteConfig> {
   const { settings } = await getProfileBundle();
+  //console.log("Fetched site config:", settings);
   return {
     name: settings.name || "[YOUR NAME]",
     role: settings.role || "",

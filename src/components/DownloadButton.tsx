@@ -1,4 +1,11 @@
-import { Download, Globe, Monitor, Smartphone, Apple, Terminal } from "lucide-react";
+import {
+  Download,
+  Globe,
+  Monitor,
+  Smartphone,
+  Apple,
+  Terminal,
+} from "lucide-react";
 import { DownloadLink } from "@/types";
 
 const platformIcon: Record<string, React.ElementType> = {
@@ -22,15 +29,29 @@ export function DownloadButton({
 
   const base =
     "inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-all active:scale-[0.98]";
+
   const styles =
     variant === "primary"
       ? "bg-accent text-white hover:opacity-90 hover:scale-[1.02]"
       : "border border-border bg-surface hover:bg-surface-2";
 
+  const isExternal = /^https?:\/\//i.test(link.url);
+
   return (
-    <a href={link.url} className={`${base} ${styles}`} target={link.url.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
+    <a
+      href={link.url}
+      className={`${base} ${styles}`}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      download={!isExternal ? true : undefined}
+    >
       <Icon className="h-4 w-4" />
-      {link.label}
+
+      Download for {link.platform} - {link.architecture} (
+      {link.size
+        ? `${(link.size / (1024 * 1024)).toFixed(2)} MB`
+        : "Unknown Size"}
+      )
     </a>
   );
 }

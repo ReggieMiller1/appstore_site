@@ -9,8 +9,11 @@ export type AppCategory =
   | "Other";
 
 export interface DownloadLink {
+  id:number;
   platform: Platform;
   label: string;
+  size: number; // optional, e.g., "10.5 MB"
+  architecture?: string; // optional, e.g., "x86", "arm64"
   url: string; // configurable, may be "#" placeholder
 }
 

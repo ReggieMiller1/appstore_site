@@ -45,7 +45,7 @@ export default async function AppDetailsPage({
   const related = allApps.filter((a) => a.slug !== app.slug).slice(0, 3);
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-14">
+    <div className="mx-auto max-w-5xl px-5 py-14 reveal">
       <Link
         href="/apps"
         className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent"
@@ -77,20 +77,18 @@ export default async function AppDetailsPage({
             <span className="inline-flex items-center gap-1.5">
               <Globe className="h-4 w-4" /> {app.platform.join(", ")}
             </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Calendar className="h-4 w-4" />
-              Updated {new Date(app.updatedDate).toLocaleDateString("en-GB", { year: "numeric", month: "long" })}
-            </span>
-            {app.size && (
+            {app.updatedDate !='' && (
               <span className="inline-flex items-center gap-1.5">
-                <HardDrive className="h-4 w-4" /> {app.size}
+                <Calendar className="h-4 w-4" />
+                Updated {new Date(app.updatedDate).toLocaleDateString("en-GB", { year: "numeric", month: "long" })}
               </span>
             )}
+
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
             {app.downloads.map((d) => (
-              <DownloadButton key={d.platform} link={d} />
+              <DownloadButton  key={`${d.id.toString()}`} link={d} />
             ))}
             {app.githubUrl && (
               <a

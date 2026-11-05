@@ -5,8 +5,7 @@ import { Hero } from "@/components/Hero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { AppCard } from "@/components/AppCard";
 import { ProjectCard } from "@/components/ProjectCard";
-import { getFeaturedApps, getFeaturedProjects, getProfileBundle, getSiteConfig } from "@/lib/api";
-
+import { getFeaturedApps, getFeaturedProjects, getProfileBundle, getSiteConfig,mediaUrl } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
@@ -84,7 +83,7 @@ export default async function Home() {
 
           <div className="reveal relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-3xl border border-border bg-surface-2">
             <Image
-              src="/icons/profile-placeholder.svg"
+              src={mediaUrl("/storage/v1/object/public/profile/profile-photo.jpg")}
               alt="[PROFILE PHOTO]"
               fill
               className="object-cover"
